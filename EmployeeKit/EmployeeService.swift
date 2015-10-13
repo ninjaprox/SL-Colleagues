@@ -21,12 +21,19 @@
 */
 
 import Foundation
+import CoreSpotlight
 
 // MARK: Indexing
 extension EmployeeService {
   
   public func destroyEmployeeIndexing() {
-    // TODO: Implement this
+    CSSearchableIndex.defaultSearchableIndex().deleteAllSearchableItemsWithCompletionHandler { (error) -> Void in
+      if let error = error {
+        print("Error deleting searching employee items: \(error)")
+      } else {
+        print("Employees indexing deleted.")
+      }
+    }
   }
 }
 
